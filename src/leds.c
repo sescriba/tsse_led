@@ -25,7 +25,6 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions =============================================================== */
 
-#include "unity.h"
 #include "leds.h"
 
 /* === Macros definitions ====================================================================== */
@@ -44,11 +43,8 @@ SPDX-License-Identifier: MIT
 
 /* === Public function implementation ========================================================== */
 
-//Al iniciar el driver todos los leds deben quedar apagados
-void test_todos_los_leds_arrancan_apagados(void){
-    uint16_t puerto_virtual = 0xFFFF;
-    LedsInit(&puerto_virtual);
-    TEST_ASSERT_EQUAL(0, puerto_virtual);
+void LedsInit(uint16_t *puerto){
+    *puerto = 0;
 }
 
 /* === End of documentation ==================================================================== */

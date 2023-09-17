@@ -19,36 +19,42 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
+#ifndef LEDS_H
+#define LEDS_H
+
 /** @file
  ** @brief Definición de la función principal del programa
  **/
 
-/* === Headers files inclusions =============================================================== */
+/* === Headers files inclusions ================================================================ */
 
-#include "unity.h"
-#include "leds.h"
+#include <stdint.h>
 
-/* === Macros definitions ====================================================================== */
+/* === Cabecera C++ ============================================================================ */
 
-/* === Private data type declarations ========================================================== */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-/* === Private variable declarations =========================================================== */
+/* === Public macros definitions =============================================================== */
 
-/* === Private function declarations =========================================================== */
+/* === Public data type declarations =========================================================== */
 
-/* === Public variable definitions ============================================================= */
+/* === Public variable declarations ============================================================ */
 
-/* === Private variable definitions ============================================================ */
+/* === Public function declarations ============================================================ */
 
-/* === Private function implementation ========================================================= */
-
-/* === Public function implementation ========================================================== */
-
-//Al iniciar el driver todos los leds deben quedar apagados
-void test_todos_los_leds_arrancan_apagados(void){
-    uint16_t puerto_virtual = 0xFFFF;
-    LedsInit(&puerto_virtual);
-    TEST_ASSERT_EQUAL(0, puerto_virtual);
-}
+/**
+ * @brief Función princial del proyecto
+ *
+ * @return void
+ */
+void LedsInit(uint16_t *puerto);
 
 /* === End of documentation ==================================================================== */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* LEDS_H */
