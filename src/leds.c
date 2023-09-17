@@ -29,6 +29,10 @@ SPDX-License-Identifier: MIT
 
 /* === Macros definitions ====================================================================== */
 
+#define LED_OFFSET 1
+#define LED_STATE_ON 1
+#define ALL_LEDS_OFF 0
+
 /* === Private data type declarations ========================================================== */
 
 /* === Private variable declarations =========================================================== */
@@ -43,19 +47,23 @@ static uint16_t *direccion_puerto;
 
 /* === Private function implementation ========================================================= */
 
+static uint16_t LedToMask(unsigned int led){
+    return LED_STATE_ON << (led-LED_OFFSET);
+}
+
 /* === Public function implementation ========================================================== */
 
 void LedsInit(uint16_t *puerto){
     direccion_puerto = puerto;
-    *puerto = 0;
+    *puerto = ALL_LEDS_OFF;
 }
 
 void LedTurnOn(unsigned int led){
-    *direccion_puerto = 1 << (led-1);
+    *direccion_puerto |= LedToMask(led);
 }
 
 void LedTurnOff(unsigned int led){
-    *direccion_puerto = 0;
+    *direccion_puerto &= ~(LedToMask(led));
 }
 
 /* === End of documentation ==================================================================== */

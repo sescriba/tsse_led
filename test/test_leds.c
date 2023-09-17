@@ -71,4 +71,28 @@ void test_apagar_un_led_encendido(void){
     TEST_ASSERT_EQUAL(0, puerto_virtual);
 }
 
+void test_prender_varios_leds(void){
+    LedTurnOn(5);
+    LedTurnOn(3);
+    LedTurnOn(3);
+    
+    TEST_ASSERT_BIT_HIGH(4, puerto_virtual);
+    TEST_ASSERT_BIT_HIGH(2, puerto_virtual);
+
+}
+
+void test_prender_y_apagar_varios_leds(void){
+    LedTurnOn(5);
+    LedTurnOn(3);
+    LedTurnOn(3);
+    LedTurnOff(5);
+    LedTurnOff(2);
+    
+    TEST_ASSERT_BIT_LOW(4, puerto_virtual);
+    TEST_ASSERT_BIT_HIGH(2, puerto_virtual);
+    TEST_ASSERT_BIT_LOW(1, puerto_virtual);
+    TEST_ASSERT_BIT_LOW(~(1<<2), puerto_virtual);
+
+}
+
 /* === End of documentation ==================================================================== */
