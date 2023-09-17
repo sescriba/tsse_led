@@ -45,11 +45,31 @@ extern "C" {
 /* === Public function declarations ============================================================ */
 
 /**
- * @brief Función princial del proyecto
+ * @brief Función para inicializar el hardware de los leds
  *
+ * @param puerto direccion del puerto de entrada/salida 
+ * 
  * @return void
  */
 void LedsInit(uint16_t *puerto);
+
+/**
+ * @brief Función para encender un led
+ *
+ * @param led led a encender
+ * 
+ * @return void
+ */
+void LedTurnOn(unsigned int led);
+
+/**
+ * @brief Función para apagar un led
+ *
+ * @param led led a apagar
+ * 
+ * @return void
+ */
+void LedTurnOff(unsigned int led);
 
 /* === End of documentation ==================================================================== */
 

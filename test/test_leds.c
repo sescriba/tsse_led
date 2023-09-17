@@ -40,14 +40,34 @@ SPDX-License-Identifier: MIT
 
 /* === Private variable definitions ============================================================ */
 
+static uint16_t puerto_virtual;
+
 /* === Private function implementation ========================================================= */
 
 /* === Public function implementation ========================================================== */
+
+void setUp(void){
+    LedsInit(&puerto_virtual);
+}
 
 //Al iniciar el driver todos los leds deben quedar apagados
 void test_todos_los_leds_arrancan_apagados(void){
     uint16_t puerto_virtual = 0xFFFF;
     LedsInit(&puerto_virtual);
+    TEST_ASSERT_EQUAL(0, puerto_virtual);
+}
+
+//Con todos los leds apagados se prende un led en particular
+void test_encender_un_led_apagado(void){
+    LedTurnOn(5);
+    TEST_ASSERT_BIT_HIGH(4, puerto_virtual);
+    TEST_ASSERT_BIT_LOW(~(1<<4), puerto_virtual);
+}
+
+//Con todos los leds encendidos se apaga un led en particular
+void test_apagar_un_led_encendido(void){
+    LedTurnOn(5);
+    LedTurnOff(5);
     TEST_ASSERT_EQUAL(0, puerto_virtual);
 }
 
